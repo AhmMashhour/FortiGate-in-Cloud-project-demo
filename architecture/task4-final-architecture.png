@@ -1,1 +1,22 @@
+## 📐 Architecture
 
+The following diagram illustrates the full traffic inspection path across GCP using FortiGate NGFW:
+
+[ Internet ]
+↓
+[ External Load Balancer (ELB) ]
+↓
+[ FortiGate NGFW ]
+↓ port1
+[ VIP: ELB_IP → 10.0.0.2 ]
+↓ port2
+[ frontend-vm (10.0.0.2) ]
+↔ (via FortiGate port2)
+[ backend-vm (10.0.1.2) ]
+
+
+**VPC Layout:**
+- `frontend-vm` resides in `frontend VPC`
+- `backend-vm` resides in `backend VPC`
+- FortiGate resides in `hub VPC`
+- All traffic is routed and inspected through FortiGate NGFW
