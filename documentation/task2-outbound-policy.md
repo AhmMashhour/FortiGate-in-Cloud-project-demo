@@ -47,6 +47,7 @@ Cloud VMs by default cannot reach the Internet unless explicitly routed and perm
 ---
 
 ## 🧪 Test Performed
+![Start and Stop VMs](../screenshots/task2-start-stop-vms.png)
 
 After enabling this policy:
 
