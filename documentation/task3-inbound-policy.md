@@ -53,6 +53,7 @@ Allow users from the public internet to access a web application hosted on `fron
 ---
 
 ## 📌 Why VIP + Policy Are Necessary
+![ELB Configuration](../screenshots/task3-loadbalancer-details.png)
 
 - **Frontend VMs do not have public IPs**
 - ELB forwards requests to FortiGate (`port1`)
