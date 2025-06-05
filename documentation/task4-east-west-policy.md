@@ -17,6 +17,8 @@ Enable secure communication **between internal application tiers** by:
 ## ⚙️ Configuration Steps
 
 ### 1. Create Dynamic Address for Frontend
+![Frontend Tag Address](../screenshots/task4-gcp-frontend-address.png)
+
 - Go to: `Policy & Objects > Addresses` → `Create New`
 - Name: `gcp-frontend`
 - Type: `Dynamic`
@@ -25,11 +27,13 @@ Enable secure communication **between internal application tiers** by:
 - Click **OK**
 
 ### 2. Create Dynamic Address for Backend
+![Backend Tag Address](../screenshots/task4-gcp-backend-address.png)
 - Repeat as above
 - Name: `gcp-backend`
 - Filter: `Tag=backend`
 
 ### 3. Create East-West Firewall Policy
+![East-West Policy](../screenshots/task4-east-west-policy.png)
 - Go to: `Policy & Objects > Firewall Policy` → `Create New`
 - Name: `frontend-to-backend`
 - Incoming Interface: `port2`
@@ -56,7 +60,7 @@ Enable secure communication **between internal application tiers** by:
 ---
 
 ## 🧪 Test Performed
-
+![It Works Result](../screenshots/task4-it-works.png)
 1. From browser, visit:  
    `http://<ELB_PUBLIC_IP>/`
 2. Web application on `frontend-vm` contacts `backend-vm`
@@ -66,7 +70,7 @@ Enable secure communication **between internal application tiers** by:
 ---
 
 ## 🧪 EICAR Threat Test
-
+![EICAR Blocked Alert](../screenshots/task4-eicar-alert.png)
 1. Clicked "Try getting EICAR" from frontend
 2. FortiGate intercepted and **blocked the download**
 3. Alert appeared in:  
