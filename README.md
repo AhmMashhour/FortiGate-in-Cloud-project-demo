@@ -18,16 +18,9 @@ This project demonstrates how to deploy and configure a **FortiGate Next-Generat
 
 ## 🧠 Architecture Summary
 
-[ Internet ]
-↓
-[ External Load Balancer (ELB) ]
-↓ port1
-[ FortiGate NGFW ]
-↓ VIP: ELB_IP → 10.0.0.2
-↓ port2
-[ frontend-vm (10.0.0.2) ]
-↔ (via FortiGate port2)
-[ backend-vm (10.0.1.2) ]
+```text
+Internet → ELB → FortiGate (port1) → VIP (ELB_IP → 10.0.0.2) → frontend-vm (port2) ↔ backend-vm (10.0.1.2) via FortiGate (port2)
+```
 
 
 All traffic passes through FortiGate before reaching internal VMs or the internet.
