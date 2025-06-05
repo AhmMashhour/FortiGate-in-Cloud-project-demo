@@ -16,7 +16,7 @@ Log & Report > Forward Traffic
 ---
 
 ## 🔍 Outbound Traffic Log (Task 2)
-
+![Outbound Logs](../screenshots/logs-outbound.png)
 - **Source IPs:** `10.0.0.2` (frontend), `10.0.1.2` (backend)
 - **Destination:** Ubuntu update mirrors, DNS, time servers
 - **Service:** HTTP, HTTPS, DNS
@@ -43,7 +43,7 @@ Log & Report > Forward Traffic
 ---
 
 ## 🔁 East-West Traffic Log (Task 4)
-
+![Inbound and Internal Logs](../screenshots/logs-inbound-eastwest.png)
 - **Source:** `frontend-vm` (10.0.0.2)
 - **Destination:** `backend-vm` (10.0.1.2)
 - **Service:** HTTP
