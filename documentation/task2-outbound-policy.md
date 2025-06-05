@@ -12,6 +12,8 @@ Allow internal virtual machines to access the Internet **securely** via FortiGat
 
 ## ⚙️ Configuration Steps
 
+![Outbound Policy Configuration](../screenshots/task2-outbound-policy.png)
+
 1. Access the **primary FortiGate GUI**
 2. Navigate to:  
    `Policy & Objects > Firewall Policy`
