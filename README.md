@@ -1,95 +1,86 @@
-# 🛡️ FortiGate in Cloud – Project Demo
+# 🔒 FortiGate in Google Cloud – Traffic Inspection Lab
 
-This repository documents a complete cloud security lab that demonstrates how to deploy and configure a **FortiGate Next-Generation Firewall (NGFW)** in **Google Cloud Platform (GCP)** to inspect and control **inbound**, **outbound**, and **east-west** traffic between Virtual Private Clouds (VPCs).
+This project demonstrates how to deploy and configure a **FortiGate Next-Generation Firewall (NGFW)** in **Google Cloud Platform (GCP)** to inspect and secure **inbound, outbound, and east-west** traffic.
 
----
-
-## 📌 Overview
-
-In modern cloud deployments, centralizing and enforcing network security policies is crucial. This project implements:
-
-- A **hub-and-spoke VPC architecture**
-- A highly available **FortiGate firewall cluster**
-- Secure inspection of traffic flows using **IPS, Antivirus, SSL inspection**
-- Fine-grained firewall policies for each traffic direction
+> 💡 Built using Qwiklabs environment and Fortinet best practices.
 
 ---
 
-## 📐 Architecture
+## 📌 Project Goals
 
-![Architecture](architecture/task4-final-architecture.png)
-
-**Key Components:**
-
-- `frontend-vm` in its own VPC
-- `backend-vm` in another VPC
-- FortiGate cluster in hub VPC
-- External Load Balancer (ELB) for inbound traffic
-- FortiGate policies control:
-  - Outbound internet access
-  - Inbound access to frontend app
-  - Internal (east-west) access between frontend and backend
+- Redirect inbound traffic to an internal web app (`frontend-vm`)
+- Secure outbound traffic from VMs to the internet
+- Inspect east-west traffic between `frontend-vm` and `backend-vm` using dynamic tagging
+- Apply IPS, Antivirus, Application Control & SSL Inspection policies
+- View traffic logs and threat detection events via FortiGate GUI
 
 ---
 
-## 🔧 Technologies Used
+## 🧠 Architecture Summary
 
-- **Google Cloud Platform (GCP)**
-  - VPC Networks, Peering
-  - Compute Engine
-  - Load Balancing
-- **Fortinet FortiGate NGFW**
-  - High Availability (HA)
-  - SDN Connector
-  - IPS, Antivirus, SSL Inspection
-- **Security Policies**
-  - VIPs (Virtual IP)
-  - Explicit firewall policies per traffic direction
+[ Internet ]
+↓
+[ External Load Balancer (ELB) ]
+↓ port1
+[ FortiGate NGFW ]
+↓ VIP: ELB_IP → 10.0.0.2
+↓ port2
+[ frontend-vm (10.0.0.2) ]
+↔ (via FortiGate port2)
+[ backend-vm (10.0.1.2) ]
 
----
 
-## ✅ Tasks Completed
-
-| Task | Description |
-|------|-------------|
-| **Task 1** | Configure static routes in FortiGate to reach workload VPCs |
-| **Task 2** | Allow and inspect outbound traffic from VMs to Internet |
-| **Task 3** | Redirect and inspect inbound traffic from Internet to frontend |
-| **Task 4** | Secure and inspect east-west traffic between frontend and backend |
-
-Screenshots and logs available in `/screenshots` and `/documentation`.
+All traffic passes through FortiGate before reaching internal VMs or the internet.
 
 ---
 
-## 🧪 Security Tests
+## 📁 Project Structure
 
-- ✔️ Verified HTTP access to frontend via ELB
-- ✔️ Attempted to download `EICAR` test virus (blocked by FortiGate)
-- ✔️ Logs recorded in FortiGate showing attack detection
-
----
-
-## 📸 Sample Screenshots
-
-| Event | Screenshot |
-|-------|------------|
-| Outbound logs | ![Outbound](screenshots/task2-logs.png) |
-| VIP configuration | ![VIP](screenshots/task3-vip-policy.png) |
-| Blocked EICAR alert | ![EICAR](screenshots/task4-eicar-alert.png) |
-| Web response | ![Web](screenshots/task4-it-works.png) |
+| Folder / File | Description |
+|---------------|-------------|
+| `architecture/flow-diagram.md` | Visual and logical flow of traffic (Inbound, Outbound, East-West) |
+| `documentation/task1-routing.md` | Static route config to workload VPCs |
+| `documentation/task2-outbound-policy.md` | Outbound policy setup and test |
+| `documentation/task3-inbound-policy.md` | VIP + Inbound firewall rule setup |
+| `documentation/task4-east-west-policy.md` | Internal communication policies and threat inspection |
+| `documentation/logs-analysis.md` | Screenshots and summary of logged events |
+| `screenshots/` | Visual evidence of all configurations and results |
 
 ---
 
-## 👨‍💻 What I Learned
+## 📸 Key Screenshots
 
-- How to deploy and operate FortiGate NGFW in GCP
-- Configuring traffic inspection using firewall policies
-- Enforcing security between cloud application tiers
-- Troubleshooting routing and NAT behavior in GCP
-- Using SDN connectors for dynamic object-based firewall rules
+| Category | Preview |
+|---------|---------|
+| Outbound Logs | ![Outbound Logs](./screenshots/logs-outbound.png) |
+| Inbound Policy | ![Inbound Policy](./screenshots/task3-inbound-policy.png) |
+| EICAR Alert | ![EICAR Blocked](./screenshots/task4-eicar-alert.png) |
+| "It works!" | ![It Works](./screenshots/task4-it-works.png) |
 
 ---
 
-## 📎 License
+## ✅ Lab Tools Used
 
-This project is for educational and demonstration purposes only.
+- FortiGate NGFW v7.2.11 (GUI + Policy Engine)
+- GCP: VPCs, Load Balancer, Compute Engine
+- Tags and Dynamic Addressing (Fabric Connector)
+- Logging: Forward Traffic with UTM inspection
+
+---
+
+## 🧪 Threat Detection Example
+
+The following test was used to validate antivirus functionality:
+
+- Attempted to download `EICAR` test file from `frontend-vm`
+- FortiGate successfully intercepted and blocked the file
+
+---
+
+## 📬 Contact
+
+Feel free to reach out if you'd like a guided walkthrough or need a similar architecture deployed in your cloud infrastructure.
+
+---
+
+> 🔐 This project reflects real-world secure cloud architecture practices and hands-on expertise with Fortinet in GCP.
