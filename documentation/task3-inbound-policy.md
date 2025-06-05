@@ -12,6 +12,15 @@ Allow users from the public internet to access a web application hosted on `fron
 
 ## ⚙️ Configuration Steps
 
+### 1. Create Virtual IP
+![VIP Creation](../screenshots/task3-vip-creation.png)
+
+### 2. Verify VIP and Create Policy
+![VIP in List](../screenshots/task3-vip-list.png)
+
+### 3. Configure Firewall Policy for Inbound Access
+![Inbound Policy Configuration](../screenshots/task3-inbound-policy.png)
+
 ### 1. Create Virtual IP (VIP)
 - Navigate to: `Policy & Objects > Virtual IPs`
 - Click **Create New**
@@ -53,6 +62,8 @@ Allow users from the public internet to access a web application hosted on `fron
 ---
 
 ## 🧪 Test Performed
+
+![504 Gateway Timeout Result](../screenshots/task3-504-timeout.png)
 
 - Opened browser to:  
   `http://<ELB_PUBLIC_IP>/`
