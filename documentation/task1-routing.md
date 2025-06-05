@@ -11,6 +11,8 @@ Enable FortiGate to reach internal virtual machines (`frontend-vm` and `backend-
 ---
 
 ## ⚙️ Configuration Steps
+![Static Route Configuration](../screenshots/task1-static-route.png)
+
 
 1. Login to the **primary FortiGate GUI**
 2. Navigate to:  
